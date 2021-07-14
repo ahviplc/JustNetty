@@ -68,6 +68,12 @@ https://zhuanlan.zhihu.com/p/26950051
 优雅shutdown
 netty集成ssl完整参考指南（含完整源码） - zhjh256 - 博客园
 https://www.cnblogs.com/zhjh256/p/6488668.html
+
+Netty 5用户指南 | 并发编程网 – ifeve.com
+http://ifeve.com/netty5-user-guide/
+
+《Netty 实战》Netty In Action中文版 第2章——你的第一款Netty应用程序 | 并发编程网 – ifeve.com
+http://ifeve.com/netty-in-action-2/
 ```
 
 ## Notes
@@ -103,10 +109,6 @@ class shutdown {
     logger.debug("spider server is shutdown.");
     }
 }
-```
-
-```markdown
-
 ```
 
 ## Author

@@ -1,6 +1,6 @@
 package com.lc.server;
 
-import com.lc.client.MyClientSslContextFactory;
+import cn.hutool.log.StaticLog;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.net.ssl.KeyManagerFactory;
@@ -78,6 +78,7 @@ public class MyServerSslContextFactory {
 					in.close();
 				} catch (IOException e) {
 					log.info("close InputStream in.", e);
+					StaticLog.info("close InputStream in.", e);
 				}
 			}
 
@@ -87,6 +88,7 @@ public class MyServerSslContextFactory {
 					caIn.close();
 				} catch (IOException e) {
 					log.info("close InputStream caIn.", e);
+					StaticLog.info("close InputStream caIn.", e);
 				}
 			}
 		}

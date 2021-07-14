@@ -1,5 +1,6 @@
 package com.lc.client;
 
+import cn.hutool.log.StaticLog;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -19,7 +20,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-
 
 @Slf4j
 public class NettyClient {
@@ -60,6 +60,7 @@ public class NettyClient {
 			future.channel().closeFuture().sync();
 		} catch (Exception ex) {
 			log.info("connection exception", ex);
+			StaticLog.info("connection exception", ex);
 		}
 	}
 
@@ -69,7 +70,7 @@ public class NettyClient {
 	 */
 	public static void main(String[] args) throws Exception {
 		String destIp = "localhost";
-		int port = 5566;
+		int port = 10002;
 		new NettyClient().connect(destIp, port);
 	}
 }

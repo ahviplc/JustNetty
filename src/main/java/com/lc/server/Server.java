@@ -20,14 +20,15 @@ import java.io.IOException;
 
 @Slf4j
 public class Server {
-	private static final int PORT = 5566;
+	private static final int PORT = 10002;
 
 	public void bind() throws Exception {
 		// 配置服务端的NIO线程组
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 		ServerBootstrap b = new ServerBootstrap();
-		b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+		b.group(bossGroup, workerGroup)
+				.channel(NioServerSocketChannel.class)
 				.option(ChannelOption.SO_BACKLOG, 100)
 				.handler(new LoggingHandler(LogLevel.INFO))
 				.childHandler(new ChannelInitializer<SocketChannel>() {
@@ -41,11 +42,11 @@ public class Server {
 						SSLContext sslContext =
 								MyServerSslContextFactory.getServerContext(jksPath, caPath, "pass123456", "pass123456");
 
-						//设置为服务器模式
+						// 设置为服务器模式
 						SSLEngine sslEngine = sslContext.createSSLEngine();
 						// 这里是服务端 设置为 false
 						sslEngine.setUseClientMode(false);
-						//是否需要验证客户端 。 如果是双向认证，则需要将其设置为true，同时将client证书添加到server的信任列表中
+						// 是否需要验证客户端 。 如果是双向认证，则需要将其设置为true，同时将client证书添加到server的信任列表中
 						// 这里是 双向认证 设置为 true
 						sslEngine.setNeedClientAuth(true); // false
 						ch.pipeline().addLast("ssl", new SslHandler(sslEngine));
@@ -59,7 +60,7 @@ public class Server {
 		// 绑定端口，同步等待成功
 		b.bind(PORT).sync();
 
-		System.out.println("❤7 Netty server start on  : " + PORT);
+		System.out.println("❤777 Netty server start on  : " + PORT);
 	}
 
 	public static void main(String[] args) throws Exception {

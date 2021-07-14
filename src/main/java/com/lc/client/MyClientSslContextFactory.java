@@ -1,6 +1,7 @@
 package com.lc.client;
 
 import cn.hutool.core.lang.Console;
+import cn.hutool.log.StaticLog;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.net.ssl.KeyManagerFactory;
@@ -73,6 +74,7 @@ public class MyClientSslContextFactory {
 					trustInput.close();
 				} catch (IOException e) {
 					log.info("close InputStream trustInput.", e);
+					StaticLog.info("close InputStream trustInput.", e);
 				}
 			}
 
@@ -82,6 +84,7 @@ public class MyClientSslContextFactory {
 					keyIn.close();
 				} catch (IOException e) {
 					log.info("close InputStream keyIn.", e);
+					StaticLog.info("close InputStream keyIn.", e);
 				}
 			}
 		}

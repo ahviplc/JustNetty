@@ -1,6 +1,8 @@
 package com.lc.server;
 
+import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.log.StaticLog;
 import com.lc.utils.SocketUtils;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -19,6 +21,7 @@ public class SslDemoServerSideHandler extends SimpleChannelInboundHandler<String
 	@Override
 	public void channelActive(final ChannelHandlerContext ctx) {
 		log.info("888 ---Connection Created from {}", ctx.channel().remoteAddress());
+		Console.log("888 ---Connection Created from {}", ctx.channel().remoteAddress());
 		SocketUtils.sendHello(ctx, " 999 server ", false);
 	}
 
@@ -26,14 +29,16 @@ public class SslDemoServerSideHandler extends SimpleChannelInboundHandler<String
 	public void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
 		// Send the received message to all channels but the current one.
 		log.info("aaa ip:{}--- msg:{}", ctx.channel().remoteAddress(), msg);
+		Console.log("aaa ip:{}--- msg:{}", ctx.channel().remoteAddress(), msg);
 
-//		String reply = "bbb Server counter " + counter.getAndAdd(1) + " ❤11 " + RandomUtil.randomString(6);
-//		SocketUtils.sendLineBaseText(ctx, reply);
+		String reply = "bbb Server counter " + counter.getAndAdd(1) + " ❤11 " + RandomUtil.randomString(6);
+		SocketUtils.sendLineBaseText(ctx, reply);
 	}
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
 		log.warn("Unexpected exception from downstream.", cause);
+		Console.error("Unexpected exception from downstream. {}", cause);
 		ctx.close();
 	}
 
@@ -44,12 +49,15 @@ public class SslDemoServerSideHandler extends SimpleChannelInboundHandler<String
 			IdleStateEvent event = (IdleStateEvent) evt;
 			if (event.state().equals(IdleState.READER_IDLE)) {
 				log.info("READER_IDLE");
+				StaticLog.info("READER_IDLE Server");
 				// 超时关闭channel
 				ctx.close();
 			} else if (event.state().equals(IdleState.WRITER_IDLE)) {
 				log.info("WRITER_IDLE");
+				StaticLog.info("WRITER_IDLE Server");
 			} else if (event.state().equals(IdleState.ALL_IDLE)) {
 				log.info("ALL_IDLE");
+				StaticLog.info("ALL_IDLE Server");
 				// 发送心跳
 				ctx.channel().write("ping\n");
 			}
