@@ -16,17 +16,43 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class SslDemoClientSideHandler extends SimpleChannelInboundHandler<String> {
 
+
+	/**
+	 * 建立连接时触发
+	 *
+	 * @param ctx
+	 * @throws Exception
+	 */
 	@Override
 	public void channelActive(final ChannelHandlerContext ctx) {
-		System.out.println("111 connected " + ctx.channel().remoteAddress());
+		Console.log("111 ---Connection Created from {}", ctx.channel().remoteAddress());
+		System.out.println("222 ---connected " + ctx.channel().remoteAddress());
 		log.info("222 ---Connection Created from {}", ctx.channel().remoteAddress());
-		Console.log("222 ---Connection Created from {}", ctx.channel().remoteAddress());
-		SocketUtils.sendHello(ctx, " 333 Client ", false);
+		SocketUtils.sendHello(ctx, " 333 Client.", false);
 
 		String str20 = "6801234567890123456789012345678916";
 		ctx.writeAndFlush(str20);
 	}
 
+	/**
+	 * 连接关闭时触发
+	 *
+	 * @param ctx
+	 * @throws Exception
+	 */
+	@Override
+	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+		Console.log("...SslDemoClientSideHandler channelInactive...{}", ctx.channel().remoteAddress());
+		super.channelInactive(ctx);
+	}
+
+	/**
+	 * 收到消息时触发
+	 *
+	 * @param ctx
+	 * @param msg
+	 * @throws Exception
+	 */
 	@Override
 	public void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
 		// Send the received message to all channels but the current one.
@@ -40,6 +66,13 @@ public class SslDemoClientSideHandler extends SimpleChannelInboundHandler<String
 		ctx.writeAndFlush(str20);
 	}
 
+	/**
+	 * 出异常的时候 触发
+	 *
+	 * @param ctx
+	 * @param cause
+	 * @throws Exception
+	 */
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
 		log.warn("Unexpected exception from downstream.", cause);

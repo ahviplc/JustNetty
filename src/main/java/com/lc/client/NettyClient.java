@@ -27,7 +27,7 @@ public class NettyClient {
 	private ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 	EventLoopGroup group = new NioEventLoopGroup();
 
-	public void connect( String host, int port){
+	public void connect(String host, int port) {
 
 		// 配置客户端NIO线程组
 		try {
@@ -36,7 +36,7 @@ public class NettyClient {
 					.option(ChannelOption.TCP_NODELAY, true)
 					.handler(new ChannelInitializer<SocketChannel>() {
 						@Override
-						public void initChannel(SocketChannel ch){
+						public void initChannel(SocketChannel ch) {
 
 							log.info("client current dir:{}", System.getProperty("user.dir"));
 							//String clientPath = (System.getProperty("user.dir")+ "/nettyssl/src/main/resources/certs/netty-ssl-Client.jks");
@@ -44,7 +44,7 @@ public class NettyClient {
 							String pkPath = "classpath://certs/netty-ssl-Client.jks";
 							//客户方模式
 							SSLContext sslContext =
-									MyClientSslContextFactory.getClientContext(clientPath, pkPath,"pass123456");
+									MyClientSslContextFactory.getClientContext(clientPath, pkPath, "pass123456");
 							SSLEngine sslEngine = sslContext.createSSLEngine();
 							sslEngine.setUseClientMode(true);
 							ch.pipeline().addLast("ssl", new SslHandler(sslEngine));

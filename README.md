@@ -74,6 +74,19 @@ http://ifeve.com/netty5-user-guide/
 
 《Netty 实战》Netty In Action中文版 第2章——你的第一款Netty应用程序 | 并发编程网 – ifeve.com
 http://ifeve.com/netty-in-action-2/
+
+Netty4关于ChannelInboundHandler的使用说明
+https://blog.csdn.net/qq_26323323/article/details/84226845
+
+GitHub - xuwujing/Netty-study: Netty 4 的一些技术栈示例代码并辅以博文讲解。主要包括入门的demo，粘包和拆包解决办法，心跳测试，http服务的实现，client重连机制，TCP滑动窗口、protobuf协议传输等相关技术。
+https://github.com/xuwujing/Netty-study
+
+xuwujing/Netty-study - GitHub1s
+https://github1s.com/xuwujing/Netty-study
+
+粘包和拆包解决办法
+Netty-study/NettyClientHandler.java at master · xuwujing/Netty-study · GitHub
+https://github.com/xuwujing/Netty-study/blob/master/Netty-unpack/src/main/java/com/pancm/netty/client/NettyClientHandler.java
 ```
 
 ## Notes

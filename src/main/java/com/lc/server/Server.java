@@ -54,6 +54,7 @@ public class Server {
 						ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
 						ch.pipeline().addLast(new StringDecoder());
 						ch.pipeline().addLast("processMsg", new SslDemoServerSideHandler());
+						// ch.pipeline().addLast("processMsg2", new MyChannelInboundHandlerAdapterHandle());
 					}
 				});
 
