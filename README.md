@@ -87,6 +87,9 @@ https://github1s.com/xuwujing/Netty-study
 粘包和拆包解决办法
 Netty-study/NettyClientHandler.java at master · xuwujing/Netty-study · GitHub
 https://github.com/xuwujing/Netty-study/blob/master/Netty-unpack/src/main/java/com/pancm/netty/client/NettyClientHandler.java
+
+Netty-study/Netty-httpServer at master · xuwujing/Netty-study · GitHub
+https://github.com/xuwujing/Netty-study/tree/master/Netty-httpServer
 ```
 
 ## Notes
